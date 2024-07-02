@@ -1,4 +1,4 @@
-Запуск и проверка с Docker Compose.
+# Инструкция по запуску
 
 Запуск Docker Compose:
 
