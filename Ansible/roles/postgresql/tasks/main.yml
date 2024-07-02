@@ -1,0 +1,22 @@
+---
+- name: Ensure PostgreSQL is installed
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - postgresql-16
+    - postgresql-client-16
+
+- name: Ensure PostgreSQL service is enabled and started
+  systemd:
+    name: postgresql
+    enabled: yes
+    state: started
+
+- name: Configure PostgreSQL
+  template:
+    src: postgresql.conf.j2
+    dest: /etc/postgresql/16/main/postgresql.conf
+  notify:
+    - Restart PostgreSQL
