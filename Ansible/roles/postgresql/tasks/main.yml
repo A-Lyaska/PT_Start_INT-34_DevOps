@@ -1,4 +1,15 @@
 ---
+- name: Add PostgreSQL APT repository
+  apt_repository:
+    repo: 'deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main'
+    state: present
+    filename: 'pgdg.list'
+
+- name: Add PostgreSQL APT key
+  apt_key:
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    state: present
+
 - name: Ensure PostgreSQL is installed
   apt:
     name: "{{ item }}"
